@@ -2,7 +2,8 @@
  * @authors Christopher Bell, Nick Schello
 **/
 
-import java.util.ArrayList; 
+import java.util.ArrayList;
+import java.io.*; 
 
 public class Course {
 	private int idNumber;		// Student's ID Number
@@ -22,7 +23,21 @@ public class Course {
 		this.hours          = hours;
 		this.midTermGrade   = mid;
 		this.finalGrade     = fin;
-		this.gradeValue     = ' ';	
+		this.gradeValue     = ' ';
+	}
+
+	public int calculateGradeValue(Course a) {
+		if (a.finalGrade == 'A')
+			a.gradeValue = 4;
+		else if(a.finalGrade == 'B')
+			a.gradeValue = 3;
+		else if(a.finalGrade == 'C')
+			a.gradeValue = 2;
+		else if(a.finalGrade == 'D')
+			a.gradeValue = 1;
+		else if(a.finalGrade == 'F')
+			a.gradeValue = 0;
+		return a.gradeValue;
 	}
     
 	public int getIdNumber() {
@@ -72,19 +87,15 @@ public class Course {
 		System.out.println("Final Grade Value: "+gradeValue);
 	}
     
-	public int finalGradeValue(Course a) {
-		if (a.finalGrade == 'A')
-			a.gradeValue = 4;
-		else if(a.finalGrade == 'B')
-			a.gradeValue = 3;
-		else if(a.finalGrade == 'C')
-			a.gradeValue = 2;
-		else if(a.finalGrade == 'D')
-			a.gradeValue = 1;
-		else if(a.finalGrade == 'F')
-			a.gradeValue = 0;
-		return a.gradeValue;
-	}
+    public void readCourse(File fileName) {
+    	try {
+    		Scanner input = new Scanner(fileName);
+    		ArrayList<String> placeHolder = new ArrayList<String>();
+    		while(input.hasNext()) {
+    			placeHolder.add(input.nextLine());
+    		}
+    	}
+    }
 	
 	public boolean validateCourse() {
 
@@ -125,7 +136,7 @@ public class Course {
 		if(idNumber > 999999999 || idNumber < 900000000)
 			return false;
 		else
-            return true;
+			return true;
 	}
 
 

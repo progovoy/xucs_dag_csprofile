@@ -94,6 +94,8 @@ public class Course {
     		while(input.hasNext()) {
     			placeHolder.add(input.nextLine());
     		}
+    	}catch(Exception e) {
+    		System.err.println("Error reading course file.");
     	}
     }
 	

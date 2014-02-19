@@ -3,7 +3,8 @@
 **/
 
 import java.util.ArrayList;
-import java.io.*; 
+import java.util.Scanner; 
+import java.io.File;
 
 public class Course {
 	private int idNumber;		// Student's ID Number
@@ -71,6 +72,15 @@ public class Course {
 	public int getGradeValue() {
 		return gradeValue;
 	}
+
+	public boolean isNumber(String str) {  
+		try {
+			double d = Double.parseDouble(str);
+		}catch(NumberFormatException n){
+			return false;
+		}
+		return true;  
+	}
     
 	public void setGradeValue(int x) {
 		gradeValue = x;
@@ -120,18 +130,26 @@ public class Course {
 	}
 	
 	public boolean validateCourseNumber() {
-
-		return true;
+		if(isNumber(courseNumber))
+			return true;
+		else
+			return false;
 	}
 
 	public boolean validateFinalGrade() {
-
-		return true;
+		if(finalGrade =='A' || finalGrade =='B' || finalGrade =='C' ||
+			finalGrade =='D' || finalGrade =='F' || finalGrade =='W' ||
+			finalGrade =='I')
+			return true;
+		else
+			return false;
 	}
 
 	public boolean validateHours() {
-
-		return true;
+		if(hours >= 1 && hours <= 4)
+			return true;
+		else
+			return false;
 	}
 
 	public boolean validateIdNumber() {
@@ -143,8 +161,12 @@ public class Course {
 
 
 	public boolean validateMidTermGrade() {
-
-		return true;
+		if(midTermGrade =='A' || midTermGrade =='B'|| 
+			midTermGrade == 'C' || midTermGrade == 'D' ||
+			midTermGrade == 'F' || midTermGrade == 'W')
+			return true;
+		else
+			return false;
 	}
 
 	public boolean validateSubject() {
